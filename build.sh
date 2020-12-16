@@ -63,6 +63,10 @@ composer -n create-project drupal-composer/drupal-project:9.x-dev drupal --stabi
 echo '$settings["trusted_host_patterns"] = ["^localhost$"];' >> /var/www/html/drupal/web/sites/default/settings.php
 cd drupal
 mkdir -p config/sync
+chmod -R 777 /var/www/html/drupal/config
+mkdir private
+chmod -R 777 /var/www/html/drupal/private
+echo '$settings["file_private_path"] = "/var/www/html/drupal/private";' >> /var/www/html/drupal/web/sites/default/settings.php
 cp .env.example .env 
 vendor/bin/drush site:install \
   --yes \
